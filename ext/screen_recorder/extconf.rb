@@ -4,6 +4,7 @@ $CFLAGS << ' -std=c99 -Wall -Werror -pedantic -ObjC'
 $LIBS   << ' -framework AVFoundation -framework Cocoa'
 
 if RUBY_ENGINE == 'macruby'
+  $CFLAGS.gsub! /-Werror/, '' # due to GC era warning that doesn't apply
   $CFLAGS << ' -fobjc-gc'
 else
   unless RbConfig::CONFIG["CC"].match /clang/

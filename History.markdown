@@ -1,3 +1,7 @@
+# 0.1.2 - MacRuby Release
+
+  * Appease GC era compiler used by MacRuby
+
 # 0.1.1 - Derp Release
 
   * Fixed `ScreenRecorder#stop` return value

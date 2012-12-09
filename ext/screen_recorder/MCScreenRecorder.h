@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface MCScreenRecorder : NSObject <AVCaptureFileOutputDelegate, AVCaptureFileOutputRecordingDelegate>
+@interface MCScreenRecorder : NSObject <AVCaptureFileOutputDelegate, AVCaptureFileOutputRecordingDelegate> {
+}
 
 @property (assign) AVCaptureSession* session;
 @property (assign) AVCaptureScreenInput* input;

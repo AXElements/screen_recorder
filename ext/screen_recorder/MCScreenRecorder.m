@@ -11,6 +11,13 @@
 
 @implementation MCScreenRecorder
 
+@synthesize session;
+@synthesize input;
+@synthesize output;
+@synthesize file;
+@synthesize sema;
+
+
 - (id)init
 {
   if ([super init]) {
@@ -34,7 +41,8 @@
 
 - (void)dealloc
 {
-  [self.sema release];
+  dispatch_release(self.sema);
+
   [self.output release];
   [self.input release];
   [self.session release];
