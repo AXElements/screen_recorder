@@ -1,3 +1,7 @@
+# 0.1.1 - Derp Release
+
+  * Fixed `ScreenRecorder#stop` return value
+
 # 0.1.0 - Initial Release
 
   * CRuby and MacRuby compatible

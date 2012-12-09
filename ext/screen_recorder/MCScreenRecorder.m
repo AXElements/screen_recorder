@@ -104,7 +104,7 @@ default_file_name()
   [self.session stopRunning];
   [self.output stopRecording];
 
-  if (!dispatch_semaphore_wait(self.sema, SEMA_WAIT_TIME))
+  if (dispatch_semaphore_wait(self.sema, SEMA_WAIT_TIME))
     return NO;
 
   // need to wait for some callbacks because we want synchronousness
@@ -113,9 +113,11 @@ default_file_name()
     case kCFRunLoopRunStopped:
       break;
     case kCFRunLoopRunTimedOut:
-      return NO; // 'did not get callback'
+      NSLog(@"Did not get callback");
+      return NO;
     default:
-      return NO; // 'unexpected result from waiting for callback'
+      NSLog(@"Unexpected result from waiting for callback");
+      return NO;
     }
 
   if (dispatch_semaphore_wait(self.sema, SEMA_WAIT_TIME))
