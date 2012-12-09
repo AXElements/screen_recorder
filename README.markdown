@@ -9,7 +9,28 @@ runtimes.
 
 ## Examples
 
-TODO... :(
+    require 'screen_recorder'
+
+    # in block form
+    ScreenRecorder.record do
+        sleep 10 # go and do stuff
+    end
+    # now go check ~/Movies
+
+    # in "classic" form
+    recorder = ScreenRecorder.new
+    recorder.start
+    # go do stuff
+    recorder.stop
+    # now go check ~/Movies
+
+Both block and non-block forms take an optional string, which should
+be a path to save the recording (the default saves to `~/Movies`).
+
+
+## TODO
+
+* Expose recorder options at initialization (e.g. turn off mouse clicks)
 
 
 ## Copyright

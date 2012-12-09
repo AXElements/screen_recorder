@@ -43,6 +43,17 @@ rb_recorder_alloc(VALUE klass)
   return OBJC_WRAP(recorder);
 }
 
+/*
+ * Synchrnously start recording
+ *
+ * You can optionally specify a file name for the recording; if you do
+ * not then a default name will be provided in the form
+ * `~/Movies/TestRecording-20121017123230.mov`
+ * (the timestamp will be different for you).
+ *
+ * @param file_name [String] (__optional__)
+ * @return [Boolean]
+ */
 static
 VALUE
 rb_recorder_start(int argc, VALUE* argv, VALUE self)
@@ -69,6 +80,11 @@ rb_recorder_start(int argc, VALUE* argv, VALUE self)
   return (result ? Qtrue : Qfalse);
 }
 
+/*
+ * Whether or not the recording has begun
+ *
+ * This will be `true`  after calling {#start} until {#stop} is called.
+ */
 static
 VALUE
 rb_recorder_started(VALUE self)
@@ -76,6 +92,11 @@ rb_recorder_started(VALUE self)
   return ([OBJC_UNWRAP(self) isStarted] ? Qtrue : Qfalse);
 }
 
+/*
+ * Duration of the recording, in seconds
+ *
+ * @return [Float]
+ */
 static
 VALUE
 rb_recorder_length(VALUE self)
@@ -83,6 +104,11 @@ rb_recorder_length(VALUE self)
   return DBL2NUM([OBJC_UNWRAP(self) length]);
 }
 
+/*
+ * Size of the recording on disk, in bytes
+ *
+ * @return [Fixnum]
+ */
 static
 VALUE
 rb_recorder_size(VALUE self)
@@ -90,6 +116,14 @@ rb_recorder_size(VALUE self)
   return SIZET2NUM([OBJC_UNWRAP(self) size]);
 }
 
+/*
+ * Synchronously stop recording and finish up commiting any data to disk
+ *
+ * A recording cannot be {#start}ed again after it has been stopped. You
+ * will need to start a new recording.
+ *
+ * @return [Boolean]
+ */
 static
 VALUE
 rb_recorder_stop(VALUE self)
@@ -97,6 +131,13 @@ rb_recorder_stop(VALUE self)
   return ([OBJC_UNWRAP(self) stop] ? Qtrue : Qfalse);
 }
 
+/*
+ * Path to the screen recording on disk
+ *
+ * This is `nil` until the screen recording begins.
+ *
+ * @return [String,nil]
+ */
 static
 VALUE
 rb_recorder_file(VALUE self)
@@ -116,6 +157,19 @@ rb_recorder_yielder(VALUE self)
   return rb_recorder_file(self);
 }
 
+/*
+ * Record the screen while executing the given block
+ *
+ * You may optionally specify the path to save the recording to, just
+ * as when calling {#start}.
+ *
+ * The path to the recording will be returned. The recorder object is yielded.
+ *
+ * @yield
+ * @yieldparam recorder [ScreenRecorder]
+ * @param file_name [String] (__optional__)
+ * @return [String]
+ */
 static
 VALUE
 rb_recorder_record(int argc, VALUE* argv, VALUE self)
@@ -134,7 +188,18 @@ Init_screen_recorder()
   /*
    * Document-class: ScreenRecorder
    *
-   * Record screens 'n shit.
+   * Screen recordings, easy as pi.
+   *
+   * Things that you need to be concerned about:
+   *   - screen going to sleep (we can resolve this issue later)
+   *   - short recordings (~1 second) don't work too well; it looks like
+   *     the last bit of the buffer does not get saved so the last ~0.5
+   *     seconds are not saved to disk (we could add a 0.5 second sleep)
+   *   - small memory leak when a recording starts on Mountain Lion (GC)
+   *   - constantly leaking memory during recording on Lion (GC)
+   *   - run loop hack is not needed if code is already being called from
+   *     in a run loop
+   *   - pausing is not working...not sure why; so it is not exposed for now
    *
    */
   rb_cRecorder = rb_define_class("ScreenRecorder", rb_cObject);
