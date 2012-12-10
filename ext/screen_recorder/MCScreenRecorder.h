@@ -16,11 +16,11 @@
 @property (assign) AVCaptureScreenInput* input;
 @property (assign) AVCaptureMovieFileOutput* output;
 
-// File that the recording will be saved to
-@property (assign) NSURL* file;
-
 // Used for pseudo run-loop synchronization
 @property (assign) dispatch_semaphore_t sema;
+
+// File that the recording will be saved to
+@property (retain) NSURL* file;
 
 - (BOOL)   start;
 - (BOOL)   start:(NSURL*)file_name;

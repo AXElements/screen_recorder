@@ -42,7 +42,7 @@
 - (void)dealloc
 {
   dispatch_release(self.sema);
-
+  [self.file  release];
   [self.output release];
   [self.input release];
   [self.session release];
@@ -73,7 +73,10 @@ default_file_name()
 
 - (BOOL) start
 {
-  return [self start:default_file_name()];
+  NSURL* path = default_file_name();
+  BOOL result = [self start:path];
+  [path release];
+  return result;
 }
 
 - (BOOL) start:(NSURL*)file_name
@@ -83,7 +86,6 @@ default_file_name()
   [self.session startRunning];
   [self.output startRecordingToOutputFileURL:self.file
                            recordingDelegate:self];
-
 
   if (dispatch_semaphore_wait(self.sema, SEMA_WAIT_TIME))
     return NO;
