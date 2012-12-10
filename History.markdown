@@ -1,3 +1,7 @@
+# 0.1.3 - Leak Plug Release
+
+  * Fix a couple of memory leaks
+
 # 0.1.2 - MacRuby Release
 
   * Appease GC era compiler used by MacRuby
