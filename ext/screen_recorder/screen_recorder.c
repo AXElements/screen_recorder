@@ -142,11 +142,18 @@ static
 VALUE
 rb_recorder_file(VALUE self)
 {
-  NSString* name = [[OBJC_UNWRAP(self) file] path];
-  if (name)
-    return rb_str_new_cstr([name cStringUsingEncoding:NSUTF8StringEncoding]);
-  else
-    return Qnil;
+  NSString* name = [OBJC_UNWRAP(self).file path];
+  VALUE     path;
+
+  if (name) {
+    path = rb_str_new_cstr([name cStringUsingEncoding:NSUTF8StringEncoding]);
+    [name release];
+  }
+  else {
+    path = Qnil;
+  }
+
+  return path;
 }
 
 static
@@ -200,7 +207,6 @@ Init_screen_recorder()
    *   - run loop hack is not needed if code is already being called from
    *     in a run loop
    *   - pausing is not working...not sure why; so it is not exposed for now
-   *
    */
   rb_cRecorder = rb_define_class("ScreenRecorder", rb_cObject);
 
