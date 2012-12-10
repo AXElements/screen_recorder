@@ -198,15 +198,16 @@ Init_screen_recorder()
    * Screen recordings, easy as pi.
    *
    * Things that you need to be concerned about:
-   *   - screen going to sleep (we can resolve this issue later)
-   *   - short recordings (~1 second) don't work too well; it looks like
-   *     the last bit of the buffer does not get saved so the last ~0.5
-   *     seconds are not saved to disk (we could add a 0.5 second sleep)
-   *   - small memory leak when a recording starts on Mountain Lion (GC)
-   *   - constantly leaking memory during recording on Lion (GC)
-   *   - run loop hack is not needed if code is already being called from
-   *     in a run loop
-   *   - pausing is not working...not sure why; so it is not exposed for now
+   *
+   * * screen going to sleep (we can resolve this issue later)
+   * * short recordings (~1 second) don't work too well; it looks like
+   *   the last bit of the buffer does not get saved so the last ~0.5
+   *   seconds are not saved to disk (we could add a 0.5 second sleep)
+   * * small memory leak when a recording starts on Mountain Lion with MacRuby
+   * * constantly leaking memory during recording on Lion with MacRuby
+   * * run loop hack is not needed if code is already being called from
+   *   in a run loop in MacRuby
+   * * pausing is not working...not sure why; so it is not exposed for now
    */
   rb_cRecorder = rb_define_class("ScreenRecorder", rb_cObject);
 
