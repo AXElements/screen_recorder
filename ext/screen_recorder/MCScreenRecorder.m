@@ -42,7 +42,9 @@
 - (void)dealloc
 {
   dispatch_release(self.sema);
-  [self.file  release];
+
+  self.file = nil;
+
   [self.output release];
   [self.input release];
   [self.session release];
