@@ -71,7 +71,7 @@ rb_recorder_start(int argc, VALUE* argv, VALUE self)
     default:
       path = [NSString stringWithCString:StringValueCStr(argv[0])
 	                        encoding:NSUTF8StringEncoding];
-      path_url = [NSURL fileURLWithPath:path];
+      path_url = [NSURL fileURLWithPath:path isDirectory:NO];
       result = [OBJC_UNWRAP(self) start:path_url];
       [path release];
       [path_url release];
