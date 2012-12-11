@@ -1,3 +1,7 @@
+# 0.1.3 - Rubygems
+
+  * Make gem work when installed from rubygems
+
 # 0.1.3 - Leak Plug Release
 
   * Fix a couple of memory leaks

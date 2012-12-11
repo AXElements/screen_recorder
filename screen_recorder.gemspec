@@ -19,7 +19,7 @@ Originally extracted from the AXElements project.
 
   s.extensions  = ['ext/screen_recorder/extconf.rb']
   s.files       = Dir.glob('lib/**/*.rb') +
-                  Dir.glob('ext/**/*.{c,h,rb}') +
+                  Dir.glob('ext/**/*.{c,h,rb,m}') +
                   [
                    'Rakefile',
                    'README.markdown',

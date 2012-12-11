@@ -20,4 +20,4 @@ else
   $CFLAGS << ' -DNOT_MACRUBY'
 end
 
-create_makefile 'screen_recorder/screen_recorder'
+create_makefile 'screen_recorder'
