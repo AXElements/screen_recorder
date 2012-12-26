@@ -1,3 +1,11 @@
+# 0.1.5 - The real 0.1.4 release
+
+  * Nothing...
+
+# 0.1.4 - Moved the repo
+
+  * Repository has moved to https://github.com/AXElements/screen\_recorder
+
 # 0.1.3 - Rubygems
 
   * Make gem work when installed from rubygems

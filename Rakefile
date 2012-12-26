@@ -8,6 +8,7 @@ task :console => [:compile] do
   sh 'irb -Ilib -rscreen_recorder'
 end
 
+# @todo trololol
 require 'rake/testtask'
 Rake::TestTask.new do |t|
   t.libs << '.'
