@@ -10,6 +10,11 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface MCScreenRecorder : NSObject <AVCaptureFileOutputDelegate, AVCaptureFileOutputRecordingDelegate> {
+    AVCaptureSession *_session;
+    AVCaptureScreenInput *_input;
+    AVCaptureMovieFileOutput *_output;
+    NSURL *_file;
+    dispatch_semaphore_t _sema;
 }
 
 @property (assign) AVCaptureSession* session;
