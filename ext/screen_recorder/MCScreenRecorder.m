@@ -11,11 +11,11 @@
 
 @implementation MCScreenRecorder
 
-@synthesize session;
-@synthesize input;
-@synthesize output;
-@synthesize file;
-@synthesize sema;
+@synthesize session = _session;
+@synthesize input   = _input;
+@synthesize output  = _output;
+@synthesize file    = _file;
+@synthesize sema    = _sema;
 
 
 - (id)init
