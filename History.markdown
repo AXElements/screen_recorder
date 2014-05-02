@@ -1,3 +1,7 @@
+# 0.1.6 - 32-bit compatible
+
+  * Fix build errors for 32-bit Objective-C (thanks @jonnyyu)
+
 # 0.1.5 - The real 0.1.4 release
 
   * Nothing...
