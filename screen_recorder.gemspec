@@ -14,7 +14,7 @@ Originally extracted from the AXElements project.
   s.authors     = ['Mark Rada']
   s.email       = 'markrada26@gmail.com'
   s.homepage    = 'http://github.com/AXElements/screen_recorder'
-  s.licenses    = ['BSD 3-clause']
+  s.licenses    = ['BSD-3-Clause']
   s.has_rdoc    = 'yard'
 
   s.extensions  = ['ext/screen_recorder/extconf.rb']

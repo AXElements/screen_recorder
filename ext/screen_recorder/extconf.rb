@@ -1,6 +1,6 @@
 require 'mkmf'
 
-$CFLAGS << ' -std=c99 -Wall -Werror -pedantic -ObjC'
+$CFLAGS << ' -Wall -Werror -pedantic -ObjC'
 $LIBS   << ' -framework AVFoundation -framework Cocoa'
 
 if RUBY_ENGINE == 'macruby'
